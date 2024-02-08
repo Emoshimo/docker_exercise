@@ -1,0 +1,22 @@
+#overwrite docker-compose
+version: "3"
+services:
+  node-app:
+    build:
+      context: .
+      args:
+        NODE_ENV: development
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - MONGO_USER=emoshimo
+      - MONGO_PASSWORD=1234
+      - SESSION_SECRET=secret
+    command: npm run dev # overwrite CMD in Dockerfile
+
+  mongo:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=emoshimo
+      - MONGO_INITDB_ROOT_PASSWORD=1234

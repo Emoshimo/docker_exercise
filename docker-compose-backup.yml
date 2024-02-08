@@ -1,0 +1,18 @@
+# when you make a change you need to manually let docker-compose command to know it by --build
+# specify the version you are going to use
+version: "3"
+#specify all of the container you wanna create
+# you can also give your containers name
+# identitaion matters, after specifing container name you can configure that container
+services:
+  node-app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - PORT=3000
+    #env_file:
+    #  - ./.env
